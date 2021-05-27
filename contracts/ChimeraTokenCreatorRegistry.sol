@@ -1,15 +1,21 @@
+// SPDX-License-Identifier: MIT
 pragma solidity 0.6.12;
 
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/solc-0.6/contracts/math/SafeMath.sol";
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/solc-0.6/contracts/access/Ownable.sol";
+import '@openzeppelin/contracts-upgradeable/math/SafeMathUpgradeable.sol';
+import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
+import '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol';
+// import 'https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/release-v3.3/contracts/math/SafeMathUpgradeable.sol';
+// import 'https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/release-v3.3/contracts/access/OwnableUpgradeable.sol';
+// import 'https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/release-v3.3/contracts/proxy/Initializable.sol';
+
 import "./IERC721CreatorRoyalty.sol";
 import "./IERC721Creator.sol";
 
 /**
  * @title IERC721 Non-Fungible Token Creator basic interface
  */
-contract SuperRareTokenCreatorRegistry is Ownable, IERC721TokenCreator {
-    using SafeMath for uint256;
+contract ChimeraTokenCreatorRegistry is Initializable, OwnableUpgradeable, IERC721TokenCreator {
+    using SafeMathUpgradeable for uint256;
 
     /////////////////////////////////////////////////////////////////////////
     // State Variables
@@ -29,11 +35,32 @@ contract SuperRareTokenCreatorRegistry is Ownable, IERC721TokenCreator {
      * @dev Initializes the contract setting the iERC721Creators with the provided addresses.
      * @param _iERC721Creators address[] to set as iERC721Creators.
      */
-    constructor(address[] memory _iERC721Creators) public {
+    // constructor(address[] memory _iERC721Creators) public {
+    //     require(
+    //         _iERC721Creators.length < 1000,
+    //         "constructor::Cannot mark more than 1000 addresses as IERC721Creator"
+    //     );
+    //     for (uint8 i = 0; i < _iERC721Creators.length; i++) {
+    //         require(
+    //             _iERC721Creators[i] != address(0),
+    //             "constructor::Cannot set the null address as an IERC721Creator"
+    //         );
+    //         iERC721Creators[_iERC721Creators[i]] = true;
+    //     }
+    // }
+    /////////////////////////////////////////////////////////////////////////
+    // initializer
+    /////////////////////////////////////////////////////////////////////////
+    /**
+     * @dev Initializes the contract setting the iERC721Creators with the provided addresses.
+     * @param _iERC721Creators address[] to set as iERC721Creators.
+     */
+     function initialize(address[] memory _iERC721Creators) public initializer {
         require(
             _iERC721Creators.length < 1000,
             "constructor::Cannot mark more than 1000 addresses as IERC721Creator"
         );
+        __Ownable_init();
         for (uint8 i = 0; i < _iERC721Creators.length; i++) {
             require(
                 _iERC721Creators[i] != address(0),

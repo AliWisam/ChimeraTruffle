@@ -1,16 +1,25 @@
+// SPDX-License-Identifier: MIT
 pragma solidity 0.6.12;
 
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/solc-0.6/contracts/payment/PullPayment.sol";
+import "@openzeppelin/contracts-upgradeable/payment/PullPaymentUpgradeable.sol";
+import '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol';
+// import "https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/release-v3.3/contracts/payment/PullPaymentUpgradeable.sol";
+// import 'https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/release-v3.3/contracts/proxy/Initializable.sol';
 import "./MaybeSendValue.sol";
 
 /**
  * @dev Contract to make payments. If a direct transfer fails, it will store the payment in escrow until the address decides to pull the payment.
  */
-contract SendValueOrEscrow is MaybeSendValue, PullPayment {
+contract SendValueOrEscrow is MaybeSendValue, PullPaymentUpgradeable {
     /////////////////////////////////////////////////////////////////////////
     // Events
     /////////////////////////////////////////////////////////////////////////
     event SendValue(address indexed _payee, uint256 amount);
+    
+    //initializer
+    function initialize() public  initializer {
+         __PullPayment_init();
+    }
 
     /////////////////////////////////////////////////////////////////////////
     // sendValueOrEscrow

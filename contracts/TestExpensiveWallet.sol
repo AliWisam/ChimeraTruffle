@@ -1,9 +1,16 @@
 pragma solidity 0.6.12;
 
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/solc-0.6/contracts/access/Ownable.sol";
-import "./SuperRareMarketAuctionV2.sol";
+import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
+import '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol';
+// import 'https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/release-v3.3/contracts/access/OwnableUpgradeable.sol';
+// import 'https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/release-v3.3/contracts/proxy/Initializable.sol';
+import "./ChimeraMarketAuctionV2.sol";
 
-contract TestExpensiveWallet is Ownable {
+contract TestExpensiveWallet is OwnableUpgradeable {
+    
+    function initialize() public initializer { 
+        __Ownable_init();
+    }
     /**
      * @dev A costly payment method. Should fail on `<address>.transfer`
      */
@@ -20,7 +27,7 @@ contract TestExpensiveWallet is Ownable {
      * @param _escrowAddress address of the contract escrowing the money to be claimed
      */
     function claimMoney(address _escrowAddress) external onlyOwner {
-        SuperRareMarketAuctionV2(_escrowAddress).withdrawPayments(
+        ChimeraMarketAuctionV2(_escrowAddress).withdrawPayments(
             _makePayable(address(this))
         );
     }
@@ -38,7 +45,7 @@ contract TestExpensiveWallet is Ownable {
         uint256 _tokenId,
         address _market
     ) public payable {
-        SuperRareMarketAuctionV2(_market).bid{value: msg.value}(
+        ChimeraMarketAuctionV2(_market).bid{value: msg.value}(
             _newBidAmount,
             _originContract,
             _tokenId

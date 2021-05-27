@@ -1,0 +1,1160 @@
+{
+  "contractName": "TestRevertOnPay",
+  "abi": [
+    {
+      "stateMutability": "payable",
+      "type": "receive"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_newBidAmount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "_originContract",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_tokenId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "_market",
+          "type": "address"
+        }
+      ],
+      "name": "bid",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_newBidAmount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"_originContract\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_tokenId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"_market\",\"type\":\"address\"}],\"name\":\"bid\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"bid(uint256,address,uint256,address)\":{\"details\":\"Place a bid for the owner\",\"params\":{\"_market\":\"address of the marketplace to make the bid\",\"_newBidAmount\":\"uint256 value in wei to bid, plus marketplace fee.\",\"_originContract\":\"address of the contract storing the token.\",\"_tokenId\":\"uint256 ID of the token\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/home/aliwisam/AliWisamData/OptimusFox/chimera/repo/TruffleChimera/contracts/TestRevertOnPay.sol\":\"TestRevertOnPay\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/aliwisam/AliWisamData/OptimusFox/chimera/repo/TruffleChimera/contracts/ChimeraMarketAuctionV2.sol\":{\"keccak256\":\"0x703392afa3357ef17ec653ed144e9150b99943c6f6149d09b85b653059cc7a21\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://0e1df6f543ff17218e8a11a2ffca7723d7b6465bf4ca0f02d5eef913f13229c9\",\"dweb:/ipfs/QmbpkTVtRRs9rYt7u4Rs9CQ8AX81kbbeZmvAePwYSkj7ke\"]},\"/home/aliwisam/AliWisamData/OptimusFox/chimera/repo/TruffleChimera/contracts/IERC721CreatorRoyalty.sol\":{\"keccak256\":\"0xb83090c400001732ae769cc4d58144aee972ef06667cdca819f2f9427210e8cc\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ef4c402c3ba3147480d5b23cdaf0b69b06d1cc0eed3cf17b80f03241bc059045\",\"dweb:/ipfs/QmRbff7L3zfkd9ZtotYfSA2ovmy4wZQRwRroJ2nhJDdVZE\"]},\"/home/aliwisam/AliWisamData/OptimusFox/chimera/repo/TruffleChimera/contracts/IERC721TokenCreator.sol\":{\"keccak256\":\"0x3a58e42d6cadc3b2fd90a63fc8173c8f47b564d27ee3a161efeab8efdb88bd0e\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://dd85cb1402dfd7ec072314c7e5f95b4a84fa2298ea2e8890c76907c8b855cd39\",\"dweb:/ipfs/Qmbsy2EjTBK6LvTHqFftwEMKi3uCn2iUMFmD5t5ccZYhvy\"]},\"/home/aliwisam/AliWisamData/OptimusFox/chimera/repo/TruffleChimera/contracts/IMarketplaceSettings.sol\":{\"keccak256\":\"0x7da14e21531b35c0a38872202ceab9ea371239ce1ac545f2ce863ec9b03b7f7c\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5d55bd1bbae6ada609daea9db66e0afb1b6fc50558c909d6f1596b21d45ef233\",\"dweb:/ipfs/QmPCanwGTHDPCfuZ9hCmefDXNAh1mRTj86tkG25A31znco\"]},\"/home/aliwisam/AliWisamData/OptimusFox/chimera/repo/TruffleChimera/contracts/ISendValueProxy.sol\":{\"keccak256\":\"0xae7bd17d8d36b5bcb07abc52fd4c87f04a6ae3abe4a4f6fdc5c9512828b0afd0\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://9535cb47c2b6525c32a1b90af87d2e9a5089b4d7bacff233c73ecc03b158b4d7\",\"dweb:/ipfs/QmRsP3WCshPXYy3Af2B3EtMtApmw5xbDea2sFAEmjW99Gz\"]},\"/home/aliwisam/AliWisamData/OptimusFox/chimera/repo/TruffleChimera/contracts/MaybeSendValue.sol\":{\"keccak256\":\"0x64e1069b5fea5a7430d59277960fa1f45830498d8ab095517fff49580ed0bed2\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://02a6abae6d376cc2f43b68b8c48415a0a9f10e6bbab253ae6a5689569b62f08a\",\"dweb:/ipfs/QmUndtQdBFhCEK8ozSzC4jRXB3Kkfbi26wGW1i5DVcXKiF\"]},\"/home/aliwisam/AliWisamData/OptimusFox/chimera/repo/TruffleChimera/contracts/Payments.sol\":{\"keccak256\":\"0x8968033cdfef05e0a50912d6d8116a91a961df8098c31854b8ed3e5bc31f5916\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://f33507b83438f3f23cd9cf223c51c9813287e3d2dcc5f1aea72f8fe52c3b05b0\",\"dweb:/ipfs/QmaYCumZw57zpoFcpEPyjBfuc5HcGzJnyAcVcsxSWZjGku\"]},\"/home/aliwisam/AliWisamData/OptimusFox/chimera/repo/TruffleChimera/contracts/SendValueOrEscrow.sol\":{\"keccak256\":\"0xc4bc0d8d80986f6db5ad0fd187b88930421d6ad28ffc7782ccec2cdabd877265\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://187201af378889a3b3f851941e24ce360cde847ff59b377f8700041b8c7dcd43\",\"dweb:/ipfs/QmNtHjPFNhEKc1jPnCJN26gYiYv59musruwdVj26ScHW1Y\"]},\"/home/aliwisam/AliWisamData/OptimusFox/chimera/repo/TruffleChimera/contracts/SendValueProxy.sol\":{\"keccak256\":\"0x73de66ed3163075f563d7edec3a071e375ddac41d1ba6e19fd0daee5fea9a9de\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b274fb588ee72bccf15970bcb851f6718f629c6056bbd2aed2b52765d58d3668\",\"dweb:/ipfs/QmYJsYufWEc9yCm1Wtex1eMnb56ZzcmejxKaERDw6MHrDQ\"]},\"/home/aliwisam/AliWisamData/OptimusFox/chimera/repo/TruffleChimera/contracts/TestRevertOnPay.sol\":{\"keccak256\":\"0x6d88962e52850ce4937a336e2021a3d28e5936af82399ff98a250a834b099ba9\",\"urls\":[\"bzz-raw://0d16ded4c6b47b44fcd9d988a1770fa35551a937cd04e0646f97d10b29519bf6\",\"dweb:/ipfs/QmVxXSeRbSS6asKyPaoYEzUTP4ubmoF6bm9NYDeXH7zzz8\"]},\"@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol\":{\"keccak256\":\"0xa3c77c9ea6b47301c7ab5bf3addc1d809d13a27a179c4629a1b55308e8633d14\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://77a789173aa9454336023580d52fedfb2d5ef0a1ccb3040ba20f5aa56e300aef\",\"dweb:/ipfs/Qme3CQYH1AywEH1w3mDV3UT6NhMQmjspNnUA6V8yBg77Ac\"]},\"@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol\":{\"keccak256\":\"0xb419e68addcb82ecda3ad3974b0d2db76435ce9b08435a04d5b119a0c5d45ea5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://a85355cc4f2554f4a8d334336d66b48d616abf1d90ec3d6b602e825c6fe63f0c\",\"dweb:/ipfs/QmTJYtsKJjBy3ShAt4kEjvM6nfVS8ZAFQqE29fG16tUP8d\"]},\"@openzeppelin/contracts-upgradeable/introspection/IERC165Upgradeable.sol\":{\"keccak256\":\"0x4784c3f8a520a739dd25d76f514833a653990902d0e21601aed45bda44c87524\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://359411cc44a4499f37d46562ef3f348db443f9a699138c1797264d20b14697b7\",\"dweb:/ipfs/QmUmeQNUwve4MFCc1ace6zMnstqa8S9SZe1nXG9THcpQ5v\"]},\"@openzeppelin/contracts-upgradeable/math/SafeMathUpgradeable.sol\":{\"keccak256\":\"0x0dd1e9b19801e3e7d900fbf4182d81e1afd23ad7be39504e33df6bbcba91d724\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5e30d594df25d0651c2cd6f85d856e5fc9f3dbae68d017e1da33eb3c7e2f1ecc\",\"dweb:/ipfs/QmPgkV99jZr3Zs9ex8dJ5j22oX4wDuDtMCnXNy67bTwgAB\"]},\"@openzeppelin/contracts-upgradeable/payment/PullPaymentUpgradeable.sol\":{\"keccak256\":\"0x5c90b734c93b9922f372a09e7b5eba287f87554bc8cd4e4f02b6f28f59291421\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://05b21685cb9624ea6b503ec1a617b7ba5718c028c22756db5654287bb4a22cc6\",\"dweb:/ipfs/QmQi215HbGa5v169GcpTY2WJTFCAwwJKxHrTp9MEGdCEwE\"]},\"@openzeppelin/contracts-upgradeable/payment/escrow/EscrowUpgradeable.sol\":{\"keccak256\":\"0xdde3bf450ef714705d1035e36326cb400c43175be7c4236b7007c5c7338ab2d3\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://0775e9ed1c7eded092ac1222880c8388d0a3f38eae0cded76a147b5ab5b8a2f2\",\"dweb:/ipfs/QmYD3fDpdGyVCNcKcNm2tRZExJiiATqfkaZrWpCdGyg9qk\"]},\"@openzeppelin/contracts-upgradeable/proxy/Initializable.sol\":{\"keccak256\":\"0xd8e4eb08dcc1d1860fb347ba5ffd595242b9a1b66d49a47f2b4cb51c3f35017e\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://7dbc89479d30592e82442edc38053b380f611037a5e6ceafc7bf57a7aa1f0305\",\"dweb:/ipfs/QmcdYtt56WmjeYvsFjK69FnahnAriw88VzY3XRZwXkQKKN\"]},\"@openzeppelin/contracts-upgradeable/token/ERC721/IERC721Upgradeable.sol\":{\"keccak256\":\"0x3dab19bb4a63bcbda1ee153ca291694f92f9009fad28626126b15a8503b0e5ff\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ecc8ae8f1f85e11b6f749e147ac298d1d66879f3bfe3d4518b919f7b6151a73b\",\"dweb:/ipfs/QmYXZfcnCd1N1AaxUTfNQjNHJXAAfVGvae6Bte1SfTCKEz\"]},\"@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol\":{\"keccak256\":\"0xfc5ea91fa9ceb1961023b2a6c978b902888c52b90847ac7813fe3b79524165f6\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://a6b81dcc816857a9d981386f6d8de49198420ee41cdc0ecade366ab412174d03\",\"dweb:/ipfs/QmV2vznMT6m9qo3pFMAWi3Nz3UDhwesgwFxeXe6Tod3v8A\"]},\"@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol\":{\"keccak256\":\"0xbbf8a21b9a66c48d45ff771b8563c6df19ba451d63dfb8380a865c1e1f29d1a0\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://062688aac76e27ab50157a9d645700cf92e3c0d51d3d860be1d2e1a0c04a87d0\",\"dweb:/ipfs/QmfXxppWAiSTeH8YNn2EtMPDgzrLeJ5rjRq8knEbje88mX\"]},\"@openzeppelin/contracts-upgradeable/utils/EnumerableSetUpgradeable.sol\":{\"keccak256\":\"0x20714cf126a1a984613579156d3cbc726db8025d8400e1db1d2bb714edaba335\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://8d6e8cc57f51f6c73eccd5b2dbaf3d8486a35148fe0e8bea4b002fbf2a78f381\",\"dweb:/ipfs/QmawvgjwaqMxyfbFnjxfap1FZ1sPwVgGHaEC41whKdP7N4\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506101e0806100206000396000f3fe6080604052600436106100225760003560e01c80634da00aea1461009a57610095565b36610095576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252600b8152602001807f57696c6c20616c7761797300000000000000000000000000000000000000000081525060200191505060405180910390fd5b600080fd5b610110600480360360808110156100b057600080fd5b8101908080359060200190929190803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610112565b005b8073ffffffffffffffffffffffffffffffffffffffff1663c0f4ed31348686866040518563ffffffff1660e01b8152600401808481526020018373ffffffffffffffffffffffffffffffffffffffff16815260200182815260200193505050506000604051808303818588803b15801561018b57600080fd5b505af115801561019f573d6000803e3d6000fd5b50505050505050505056fea2646970667358221220d213a0486573510a845de74b922a181c7a9c88929bd87ce999503f243640108e64736f6c634300060c0033",
+  "deployedBytecode": "0x6080604052600436106100225760003560e01c80634da00aea1461009a57610095565b36610095576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252600b8152602001807f57696c6c20616c7761797300000000000000000000000000000000000000000081525060200191505060405180910390fd5b600080fd5b610110600480360360808110156100b057600080fd5b8101908080359060200190929190803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610112565b005b8073ffffffffffffffffffffffffffffffffffffffff1663c0f4ed31348686866040518563ffffffff1660e01b8152600401808481526020018373ffffffffffffffffffffffffffffffffffffffff16815260200182815260200193505050506000604051808303818588803b15801561018b57600080fd5b505af115801561019f573d6000803e3d6000fd5b50505050505050505056fea2646970667358221220d213a0486573510a845de74b922a181c7a9c88929bd87ce999503f243640108e64736f6c634300060c0033",
+  "immutableReferences": {},
+  "sourceMap": "65:808:17:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "65:808:17:-:0;;;;;;;;;;;;;;;;;;;;;;;212:21;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;65:808;;;;564:307;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;746:7;723:35;;;766:9;790:13;817:15;846:8;723:141;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;564:307;;;;:::o",
+  "source": "pragma solidity 0.6.12;\n\nimport \"./ChimeraMarketAuctionV2.sol\";\n\ncontract TestRevertOnPay {\n    /**\n     * @dev A payment method that will fail by a failed revert\n     */\n    receive() external payable {\n        revert(\"Will always\");\n    }\n\n    /**\n     * @dev Place a bid for the owner\n     * @param _newBidAmount uint256 value in wei to bid, plus marketplace fee.\n     * @param _originContract address of the contract storing the token.\n     * @param _tokenId uint256 ID of the token\n     * @param _market address of the marketplace to make the bid\n     */\n    function bid(\n        uint256 _newBidAmount,\n        address _originContract,\n        uint256 _tokenId,\n        address _market\n    ) public payable {\n        ChimeraMarketAuctionV2(_market).bid{value: msg.value}(\n            _newBidAmount,\n            _originContract,\n            _tokenId\n        );\n    }\n}\n",
+  "sourcePath": "/home/aliwisam/AliWisamData/OptimusFox/chimera/repo/TruffleChimera/contracts/TestRevertOnPay.sol",
+  "ast": {
+    "absolutePath": "/home/aliwisam/AliWisamData/OptimusFox/chimera/repo/TruffleChimera/contracts/TestRevertOnPay.sol",
+    "exportedSymbols": {
+      "TestRevertOnPay": [
+        3895
+      ]
+    },
+    "id": 3896,
+    "license": null,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 3859,
+        "literals": [
+          "solidity",
+          "0.6",
+          ".12"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:17"
+      },
+      {
+        "absolutePath": "/home/aliwisam/AliWisamData/OptimusFox/chimera/repo/TruffleChimera/contracts/ChimeraMarketAuctionV2.sol",
+        "file": "./ChimeraMarketAuctionV2.sol",
+        "id": 3860,
+        "nodeType": "ImportDirective",
+        "scope": 3896,
+        "sourceUnit": 1387,
+        "src": "25:38:17",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 3895,
+        "linearizedBaseContracts": [
+          3895
+        ],
+        "name": "TestRevertOnPay",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 3868,
+              "nodeType": "Block",
+              "src": "202:38:17",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "57696c6c20616c77617973",
+                        "id": 3865,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "219:13:17",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_df61ab1ca94e609b603fe9c72986064968d7e3ca08471eb44995eeab8b2b778c",
+                          "typeString": "literal_string \"Will always\""
+                        },
+                        "value": "Will always"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_stringliteral_df61ab1ca94e609b603fe9c72986064968d7e3ca08471eb44995eeab8b2b778c",
+                          "typeString": "literal_string \"Will always\""
+                        }
+                      ],
+                      "id": 3864,
+                      "name": "revert",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        -19,
+                        -19
+                      ],
+                      "referencedDeclaration": -19,
+                      "src": "212:6:17",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_revert_pure$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (string memory) pure"
+                      }
+                    },
+                    "id": 3866,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "212:21:17",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 3867,
+                  "nodeType": "ExpressionStatement",
+                  "src": "212:21:17"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 3861,
+              "nodeType": "StructuredDocumentation",
+              "src": "96:74:17",
+              "text": " @dev A payment method that will fail by a failed revert"
+            },
+            "id": 3869,
+            "implemented": true,
+            "kind": "receive",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 3862,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "182:2:17"
+            },
+            "returnParameters": {
+              "id": 3863,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "202:0:17"
+            },
+            "scope": 3895,
+            "src": "175:65:17",
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 3893,
+              "nodeType": "Block",
+              "src": "713:158:17",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 3888,
+                        "name": "_newBidAmount",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3872,
+                        "src": "790:13:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 3889,
+                        "name": "_originContract",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3874,
+                        "src": "817:15:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 3890,
+                        "name": "_tokenId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3876,
+                        "src": "846:8:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          },
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": null,
+                          "arguments": [
+                            {
+                              "argumentTypes": null,
+                              "id": 3882,
+                              "name": "_market",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 3878,
+                              "src": "746:7:17",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            ],
+                            "id": 3881,
+                            "name": "ChimeraMarketAuctionV2",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1386,
+                            "src": "723:22:17",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_contract$_ChimeraMarketAuctionV2_$1386_$",
+                              "typeString": "type(contract ChimeraMarketAuctionV2)"
+                            }
+                          },
+                          "id": 3883,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "typeConversion",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "723:31:17",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_contract$_ChimeraMarketAuctionV2_$1386",
+                            "typeString": "contract ChimeraMarketAuctionV2"
+                          }
+                        },
+                        "id": 3884,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "bid",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 892,
+                        "src": "723:35:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_external_payable$_t_uint256_$_t_address_$_t_uint256_$returns$__$",
+                          "typeString": "function (uint256,address,uint256) payable external"
+                        }
+                      },
+                      "id": 3887,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "names": [
+                        "value"
+                      ],
+                      "nodeType": "FunctionCallOptions",
+                      "options": [
+                        {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 3885,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": -15,
+                            "src": "766:3:17",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 3886,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "value",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "766:9:17",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        }
+                      ],
+                      "src": "723:53:17",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_payable$_t_uint256_$_t_address_$_t_uint256_$returns$__$value",
+                        "typeString": "function (uint256,address,uint256) payable external"
+                      }
+                    },
+                    "id": 3891,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "723:141:17",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 3892,
+                  "nodeType": "ExpressionStatement",
+                  "src": "723:141:17"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 3870,
+              "nodeType": "StructuredDocumentation",
+              "src": "246:313:17",
+              "text": " @dev Place a bid for the owner\n @param _newBidAmount uint256 value in wei to bid, plus marketplace fee.\n @param _originContract address of the contract storing the token.\n @param _tokenId uint256 ID of the token\n @param _market address of the marketplace to make the bid"
+            },
+            "functionSelector": "4da00aea",
+            "id": 3894,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "bid",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 3879,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3872,
+                  "mutability": "mutable",
+                  "name": "_newBidAmount",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 3894,
+                  "src": "586:21:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3871,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "586:7:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3874,
+                  "mutability": "mutable",
+                  "name": "_originContract",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 3894,
+                  "src": "617:23:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3873,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "617:7:17",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3876,
+                  "mutability": "mutable",
+                  "name": "_tokenId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 3894,
+                  "src": "650:16:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3875,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "650:7:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3878,
+                  "mutability": "mutable",
+                  "name": "_market",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 3894,
+                  "src": "676:15:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3877,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "676:7:17",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "576:121:17"
+            },
+            "returnParameters": {
+              "id": 3880,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "713:0:17"
+            },
+            "scope": 3895,
+            "src": "564:307:17",
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 3896,
+        "src": "65:808:17"
+      }
+    ],
+    "src": "0:874:17"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/home/aliwisam/AliWisamData/OptimusFox/chimera/repo/TruffleChimera/contracts/TestRevertOnPay.sol",
+      "exportedSymbols": {
+        "TestRevertOnPay": [
+          3895
+        ]
+      },
+      "license": null
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.6",
+            ".12"
+          ]
+        },
+        "id": 3859,
+        "name": "PragmaDirective",
+        "src": "0:23:17"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 1387,
+          "absolutePath": "/home/aliwisam/AliWisamData/OptimusFox/chimera/repo/TruffleChimera/contracts/ChimeraMarketAuctionV2.sol",
+          "file": "./ChimeraMarketAuctionV2.sol",
+          "scope": 3896,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 3860,
+        "name": "ImportDirective",
+        "src": "25:38:17"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            3895
+          ],
+          "name": "TestRevertOnPay",
+          "scope": 3896
+        },
+        "children": [
+          {
+            "attributes": {
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "receive",
+              "modifiers": [
+                null
+              ],
+              "name": "",
+              "overrides": null,
+              "scope": 3895,
+              "stateMutability": "payable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": " @dev A payment method that will fail by a failed revert"
+                },
+                "id": 3861,
+                "name": "StructuredDocumentation",
+                "src": "96:74:17"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 3862,
+                "name": "ParameterList",
+                "src": "182:2:17"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 3863,
+                "name": "ParameterList",
+                "src": "202:0:17"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_stringliteral_df61ab1ca94e609b603fe9c72986064968d7e3ca08471eb44995eeab8b2b778c",
+                                  "typeString": "literal_string \"Will always\""
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                -19,
+                                -19
+                              ],
+                              "referencedDeclaration": -19,
+                              "type": "function (string memory) pure",
+                              "value": "revert"
+                            },
+                            "id": 3864,
+                            "name": "Identifier",
+                            "src": "212:6:17"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "57696c6c20616c77617973",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "string",
+                              "type": "literal_string \"Will always\"",
+                              "value": "Will always"
+                            },
+                            "id": 3865,
+                            "name": "Literal",
+                            "src": "219:13:17"
+                          }
+                        ],
+                        "id": 3866,
+                        "name": "FunctionCall",
+                        "src": "212:21:17"
+                      }
+                    ],
+                    "id": 3867,
+                    "name": "ExpressionStatement",
+                    "src": "212:21:17"
+                  }
+                ],
+                "id": 3868,
+                "name": "Block",
+                "src": "202:38:17"
+              }
+            ],
+            "id": 3869,
+            "name": "FunctionDefinition",
+            "src": "175:65:17"
+          },
+          {
+            "attributes": {
+              "functionSelector": "4da00aea",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "bid",
+              "overrides": null,
+              "scope": 3895,
+              "stateMutability": "payable",
+              "virtual": false,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": " @dev Place a bid for the owner\n @param _newBidAmount uint256 value in wei to bid, plus marketplace fee.\n @param _originContract address of the contract storing the token.\n @param _tokenId uint256 ID of the token\n @param _market address of the marketplace to make the bid"
+                },
+                "id": 3870,
+                "name": "StructuredDocumentation",
+                "src": "246:313:17"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_newBidAmount",
+                      "overrides": null,
+                      "scope": 3894,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 3871,
+                        "name": "ElementaryTypeName",
+                        "src": "586:7:17"
+                      }
+                    ],
+                    "id": 3872,
+                    "name": "VariableDeclaration",
+                    "src": "586:21:17"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_originContract",
+                      "overrides": null,
+                      "scope": 3894,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 3873,
+                        "name": "ElementaryTypeName",
+                        "src": "617:7:17"
+                      }
+                    ],
+                    "id": 3874,
+                    "name": "VariableDeclaration",
+                    "src": "617:23:17"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_tokenId",
+                      "overrides": null,
+                      "scope": 3894,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 3875,
+                        "name": "ElementaryTypeName",
+                        "src": "650:7:17"
+                      }
+                    ],
+                    "id": 3876,
+                    "name": "VariableDeclaration",
+                    "src": "650:16:17"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_market",
+                      "overrides": null,
+                      "scope": 3894,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 3877,
+                        "name": "ElementaryTypeName",
+                        "src": "676:7:17"
+                      }
+                    ],
+                    "id": 3878,
+                    "name": "VariableDeclaration",
+                    "src": "676:15:17"
+                  }
+                ],
+                "id": 3879,
+                "name": "ParameterList",
+                "src": "576:121:17"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 3880,
+                "name": "ParameterList",
+                "src": "713:0:17"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                },
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "names": [
+                                "value"
+                              ],
+                              "type": "function (uint256,address,uint256) payable external"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_uint256",
+                                      "typeString": "uint256"
+                                    },
+                                    {
+                                      "typeIdentifier": "t_address",
+                                      "typeString": "address"
+                                    },
+                                    {
+                                      "typeIdentifier": "t_uint256",
+                                      "typeString": "uint256"
+                                    }
+                                  ],
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "bid",
+                                  "referencedDeclaration": 892,
+                                  "type": "function (uint256,address,uint256) payable external"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "isStructConstructorCall": false,
+                                      "lValueRequested": false,
+                                      "names": [
+                                        null
+                                      ],
+                                      "tryCall": false,
+                                      "type": "contract ChimeraMarketAuctionV2",
+                                      "type_conversion": true
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": [
+                                            {
+                                              "typeIdentifier": "t_address",
+                                              "typeString": "address"
+                                            }
+                                          ],
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 1386,
+                                          "type": "type(contract ChimeraMarketAuctionV2)",
+                                          "value": "ChimeraMarketAuctionV2"
+                                        },
+                                        "id": 3881,
+                                        "name": "Identifier",
+                                        "src": "723:22:17"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 3878,
+                                          "type": "address",
+                                          "value": "_market"
+                                        },
+                                        "id": 3882,
+                                        "name": "Identifier",
+                                        "src": "746:7:17"
+                                      }
+                                    ],
+                                    "id": 3883,
+                                    "name": "FunctionCall",
+                                    "src": "723:31:17"
+                                  }
+                                ],
+                                "id": 3884,
+                                "name": "MemberAccess",
+                                "src": "723:35:17"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "value",
+                                  "referencedDeclaration": null,
+                                  "type": "uint256"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": -15,
+                                      "type": "msg",
+                                      "value": "msg"
+                                    },
+                                    "id": 3885,
+                                    "name": "Identifier",
+                                    "src": "766:3:17"
+                                  }
+                                ],
+                                "id": 3886,
+                                "name": "MemberAccess",
+                                "src": "766:9:17"
+                              }
+                            ],
+                            "id": 3887,
+                            "name": "FunctionCallOptions",
+                            "src": "723:53:17"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 3872,
+                              "type": "uint256",
+                              "value": "_newBidAmount"
+                            },
+                            "id": 3888,
+                            "name": "Identifier",
+                            "src": "790:13:17"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 3874,
+                              "type": "address",
+                              "value": "_originContract"
+                            },
+                            "id": 3889,
+                            "name": "Identifier",
+                            "src": "817:15:17"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 3876,
+                              "type": "uint256",
+                              "value": "_tokenId"
+                            },
+                            "id": 3890,
+                            "name": "Identifier",
+                            "src": "846:8:17"
+                          }
+                        ],
+                        "id": 3891,
+                        "name": "FunctionCall",
+                        "src": "723:141:17"
+                      }
+                    ],
+                    "id": 3892,
+                    "name": "ExpressionStatement",
+                    "src": "723:141:17"
+                  }
+                ],
+                "id": 3893,
+                "name": "Block",
+                "src": "713:158:17"
+              }
+            ],
+            "id": 3894,
+            "name": "FunctionDefinition",
+            "src": "564:307:17"
+          }
+        ],
+        "id": 3895,
+        "name": "ContractDefinition",
+        "src": "65:808:17"
+      }
+    ],
+    "id": 3896,
+    "name": "SourceUnit",
+    "src": "0:874:17"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.12+commit.27d51765.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.0",
+  "updatedAt": "2021-05-27T18:18:40.658Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "bid(uint256,address,uint256,address)": {
+        "details": "Place a bid for the owner",
+        "params": {
+          "_market": "address of the marketplace to make the bid",
+          "_newBidAmount": "uint256 value in wei to bid, plus marketplace fee.",
+          "_originContract": "address of the contract storing the token.",
+          "_tokenId": "uint256 ID of the token"
+        }
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

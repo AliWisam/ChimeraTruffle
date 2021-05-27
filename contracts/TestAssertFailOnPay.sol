@@ -1,6 +1,6 @@
 pragma solidity 0.6.12;
 
-import "./SuperRareMarketAuctionV2.sol";
+import "./ChimeraMarketAuctionV2.sol";
 
 contract TestAssertFailOnPay {
     /**
@@ -23,7 +23,7 @@ contract TestAssertFailOnPay {
         uint256 _tokenId,
         address _market
     ) public payable {
-        SuperRareMarketAuctionV2(_market).bid{value: msg.value}(
+        ChimeraMarketAuctionV2(_market).bid{value: msg.value}(
             _newBidAmount,
             _originContract,
             _tokenId

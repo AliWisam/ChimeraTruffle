@@ -117,4 +117,9 @@ interface IMarketplaceSettings {
         uint256 _tokenId,
         bool _hasSold
     ) external;
+    
+    
+    
+    
+    
 }

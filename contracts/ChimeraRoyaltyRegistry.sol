@@ -1,15 +1,19 @@
+// SPDX-License-Identifier: MIT
 pragma solidity 0.6.12;
 
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/solc-0.6/contracts/math/SafeMath.sol";
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/solc-0.6/contracts/access/Ownable.sol";
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/solc-0.6/contracts/access/AccessControl.sol";
+// import 'https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/release-v3.3/contracts/math/SafeMathUpgradeable.sol';
+// import 'https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/release-v3.3/contracts/access/OwnableUpgradeable.sol';
+// import 'https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/release-v3.3/contracts/access/AccessControlUpgradeable.sol';
+import '@openzeppelin/contracts-upgradeable/math/SafeMathUpgradeable.sol';
+import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
+import '@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol';
 import "./IERC721CreatorRoyalty.sol";
 
 /**
  * @title IERC721 Non-Fungible Token Creator basic interface
  */
-contract SuperRareRoyaltyRegistry is Ownable, IERC721CreatorRoyalty {
-    using SafeMath for uint256;
+contract ChimeraRoyaltyRegistry is OwnableUpgradeable, IERC721CreatorRoyalty {
+    using SafeMathUpgradeable for uint256;
 
     /////////////////////////////////////////////////////////////////////////
     // State Variables
@@ -30,11 +34,23 @@ contract SuperRareRoyaltyRegistry is Ownable, IERC721CreatorRoyalty {
     /////////////////////////////////////////////////////////////////////////
     // Constructor
     /////////////////////////////////////////////////////////////////////////
-    constructor(address _iERC721TokenCreator) public {
+    // constructor(address _iERC721TokenCreator) public {
+    //     require(
+    //         _iERC721TokenCreator != address(0),
+    //         "constructor::Cannot set the null address as an _iERC721TokenCreator"
+    //     );
+    //     iERC721TokenCreator = IERC721TokenCreator(_iERC721TokenCreator);
+    // }
+     /////////////////////////////////////////////////////////////////////////
+    // Constructor
+    /////////////////////////////////////////////////////////////////////////
+    function initialize(address _iERC721TokenCreator) public initializer
+    {
         require(
             _iERC721TokenCreator != address(0),
             "constructor::Cannot set the null address as an _iERC721TokenCreator"
         );
+        __Ownable_init();
         iERC721TokenCreator = IERC721TokenCreator(_iERC721TokenCreator);
     }
 

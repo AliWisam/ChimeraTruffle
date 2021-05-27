@@ -1,14 +1,25 @@
+// SPDX-License-Identifier: MIT
 pragma solidity 0.6.12;
 
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/solc-0.6/contracts/token/ERC721/IERC721.sol";
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/solc-0.6/contracts/math/SafeMath.sol";
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/solc-0.6/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC721/IERC721Upgradeable.sol";
+import '@openzeppelin/contracts-upgradeable/math/SafeMathUpgradeable.sol';
+import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
+import '@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol';
+import '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol';
+// import "https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/release-v3.3/contracts/token/ERC721/IERC721Upgradeable.sol";
+// import 'https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/release-v3.3/contracts/math/SafeMathUpgradeable.sol';
+// import 'https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/release-v3.3/contracts/access/OwnableUpgradeable.sol';
+// import 'https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/release-v3.3/contracts/access/AccessControlUpgradeable.sol';
+// import 'https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/release-v3.3/contracts/proxy/Initializable.sol';
+
+
 import "./IERC721CreatorRoyalty.sol";
 import "./IMarketplaceSettings.sol";
 import "./Payments.sol";
 
-contract SuperRareMarketAuctionV2 is Ownable, Payments {
-    using SafeMath for uint256;
+
+contract ChimeraMarketAuctionV2 is Initializable, OwnableUpgradeable, AccessControlUpgradeable ,Payments {
+    using SafeMathUpgradeable for uint256;
 
     /////////////////////////////////////////////////////////////////////////
     // Structs
@@ -26,7 +37,13 @@ contract SuperRareMarketAuctionV2 is Ownable, Payments {
         address payable seller;
         uint256 amount;
     }
-
+    
+    /////////////////////////////////////////////////////////////////////////
+    // Constants
+    /////////////////////////////////////////////////////////////////////////
+        
+    bytes32 public constant TOKEN_COLLECTOR_ROLE = "TOKEN_COLLECTOR_ROLE";
+    
     /////////////////////////////////////////////////////////////////////////
     // State Variables
     /////////////////////////////////////////////////////////////////////////
@@ -45,6 +62,21 @@ contract SuperRareMarketAuctionV2 is Ownable, Payments {
 
     // A minimum increase in bid amount when out bidding someone.
     uint8 public minimumBidIncreasePercentage; // 10 = 10%
+    
+
+        mapping(uint256 => bool) private TokenConfirmedByAdmin;
+    
+    function confirmTokenByAdmin(uint256 _tokenId, address _originContract) onlyOwner external{
+         IERC721Upgradeable erc721 = IERC721Upgradeable(_originContract);
+         address tokenOwner = erc721.ownerOf(_tokenId);
+         require(tokenOwner != address(0), "confirmTokenByAdmin: token not exists");
+         TokenConfirmedByAdmin[_tokenId]  = true;
+         
+         
+    }
+    function isTokenConfirmedByAdmin(uint256 _tokenId) public view returns(bool){
+        return TokenConfirmedByAdmin[_tokenId]; 
+    }
 
     /////////////////////////////////////////////////////////////////////////////
     // Events
@@ -84,37 +116,63 @@ contract SuperRareMarketAuctionV2 is Ownable, Payments {
         uint256 _amount,
         uint256 _tokenId
     );
-
+    event collectorRoleGrantedTo(
+        address _collector
+        );
+        
+    event collectorRoleRevokedTo(
+        address _collector
+        );
     /////////////////////////////////////////////////////////////////////////
-    // Constructor
+    // initialize
     /////////////////////////////////////////////////////////////////////////
     /**
      * @dev Initializes the contract setting the market settings and creator royalty interfaces.
      * @param _iMarketSettings address to set as iMarketplaceSettings.
      * @param _iERC721CreatorRoyalty address to set as iERC721CreatorRoyalty.
      */
-    constructor(address _iMarketSettings, address _iERC721CreatorRoyalty)
-        public
-    {
+    function initialize(address _iMarketSettings, address _iERC721CreatorRoyalty) public initializer {
         require(
-            _iMarketSettings != address(0),
-            "constructor::Cannot have null address for _iMarketSettings"
+        _iMarketSettings != address(0),
+        "constructor::Cannot have null address for _iMarketSettings"
         );
 
         require(
             _iERC721CreatorRoyalty != address(0),
             "constructor::Cannot have null address for _iERC721CreatorRoyalty"
         );
-
+        __Ownable_init();
+        __AccessControl_init();
+        Payments.initializePayment();
+        
+        // Grant the contract deployer the default admin role: it will be able
+        // to grant and revoke any roles
+        _setupRole(AccessControlUpgradeable.DEFAULT_ADMIN_ROLE, owner());
         // Set iMarketSettings
         iMarketplaceSettings = IMarketplaceSettings(_iMarketSettings);
 
         // Set iERC721CreatorRoyalty
         iERC721CreatorRoyalty = IERC721CreatorRoyalty(_iERC721CreatorRoyalty);
-
+        
         minimumBidIncreasePercentage = 10;
     }
-
+    
+    //Grant Role to Collectors
+    
+    function grantCollectorRole(address _collector) onlyOwner private {
+     
+        grantRole(TOKEN_COLLECTOR_ROLE, _collector);
+        
+        emit collectorRoleGrantedTo(_collector);
+    }
+    
+    //revoke roles
+    function revokeCollectorRole(address _collector) onlyOwner private{
+        revokeRole(TOKEN_COLLECTOR_ROLE, _collector);
+        
+        emit collectorRoleRevokedTo(_collector);
+    }
+    
     /////////////////////////////////////////////////////////////////////////
     // setIMarketplaceSettings
     /////////////////////////////////////////////////////////////////////////
@@ -181,7 +239,7 @@ contract SuperRareMarketAuctionV2 is Ownable, Payments {
         address _originContract,
         uint256 _tokenId
     ) internal view {
-        IERC721 erc721 = IERC721(_originContract);
+        IERC721Upgradeable erc721 = IERC721Upgradeable(_originContract);
         address owner = erc721.ownerOf(_tokenId);
         require(
             erc721.isApprovedForAll(owner, address(this)),
@@ -198,7 +256,7 @@ contract SuperRareMarketAuctionV2 is Ownable, Payments {
         internal
         view
     {
-        IERC721 erc721 = IERC721(_originContract);
+        IERC721Upgradeable erc721 = IERC721Upgradeable(_originContract);
         require(
             erc721.ownerOf(_tokenId) == msg.sender,
             "sender must be the token owner"
@@ -219,11 +277,14 @@ contract SuperRareMarketAuctionV2 is Ownable, Payments {
         uint256 _tokenId,
         uint256 _amount
     ) external {
+        
         // The owner of the token must have the marketplace approved
         ownerMustHaveMarketplaceApproved(_originContract, _tokenId);
-
+        
         // The sender must be the token owner
         senderMustBeTokenOwner(_originContract, _tokenId);
+        
+        require(isTokenConfirmedByAdmin(_tokenId) == true, "Token not confirmed by admin to trade");
 
         if (_amount == 0) {
             // Set not for sale and exit
@@ -235,13 +296,13 @@ contract SuperRareMarketAuctionV2 is Ownable, Payments {
         tokenPrices[_originContract][_tokenId] = SalePrice(msg.sender, _amount);
         emit SetSalePrice(_originContract, _amount, _tokenId);
     }
-
-    /////////////////////////////////////////////////////////////////////////
-    // safeBuy
     /////////////////////////////////////////////////////////////////////////
     /**
      * @dev Purchase the token with the expected amount. The current token owner must have the marketplace approved.
      * @param _originContract address of the contract storing the token.
+
+    /////////////////////////////////////////////////////////////////////////
+    // safeBuy
      * @param _tokenId uint256 ID of the token
      * @param _amount uint256 wei amount expecting to purchase the token for.
      */
@@ -250,6 +311,7 @@ contract SuperRareMarketAuctionV2 is Ownable, Payments {
         uint256 _tokenId,
         uint256 _amount
     ) external payable {
+        
         // Make sure the tokenPrice is the expected amount
         require(
             tokenPrices[_originContract][_tokenId].amount == _amount,
@@ -258,7 +320,7 @@ contract SuperRareMarketAuctionV2 is Ownable, Payments {
         buy(_originContract, _tokenId);
     }
 
-    /////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
     // buy
     /////////////////////////////////////////////////////////////////////////
     /**
@@ -267,6 +329,7 @@ contract SuperRareMarketAuctionV2 is Ownable, Payments {
      * @param _tokenId uint256 ID of the token.
      */
     function buy(address _originContract, uint256 _tokenId) public payable {
+        require(hasRole(TOKEN_COLLECTOR_ROLE, msg.sender), "You are not allowed to collect Art");
         // The owner of the token must have the marketplace approved
         ownerMustHaveMarketplaceApproved(_originContract, _tokenId);
 
@@ -288,7 +351,7 @@ contract SuperRareMarketAuctionV2 is Ownable, Payments {
         );
 
         // Get token contract details.
-        IERC721 erc721 = IERC721(_originContract);
+        IERC721Upgradeable erc721 = IERC721Upgradeable(_originContract);
         address tokenOwner = erc721.ownerOf(_tokenId);
 
         // Wipe the token price.
@@ -301,10 +364,11 @@ contract SuperRareMarketAuctionV2 is Ownable, Payments {
         if (_addressHasBidOnToken(msg.sender, _originContract, _tokenId)) {
             _refundBid(_originContract, _tokenId);
         }
-
+        //Made 2 types of Payments in Payments.sol Primary and secondary
         // Payout all parties.
         address payable owner = _makePayable(owner());
-        Payments.payout(
+        if(!iMarketplaceSettings.hasERC721TokenSold(_originContract, _tokenId)){
+            Payments.payoutPrimary(
             sp.amount,
             !iMarketplaceSettings.hasERC721TokenSold(_originContract, _tokenId),
             iMarketplaceSettings.getMarketplaceFeePercentage(),
@@ -325,6 +389,31 @@ contract SuperRareMarketAuctionV2 is Ownable, Payments {
         iMarketplaceSettings.markERC721Token(_originContract, _tokenId, true);
 
         emit Sold(_originContract, msg.sender, tokenOwner, sp.amount, _tokenId);
+        }
+        else{
+            Payments.payoutSecondary(
+            sp.amount,
+            !iMarketplaceSettings.hasERC721TokenSold(_originContract, _tokenId),
+            iMarketplaceSettings.getMarketplaceFeePercentage(),
+            iERC721CreatorRoyalty.getERC721TokenRoyaltyPercentage(
+                _originContract,
+                _tokenId
+            ),
+            iMarketplaceSettings.getERC721ContractSecondarySaleFeePercentage(
+                _originContract
+            ),
+            _makePayable(tokenOwner),
+            owner,
+            iERC721CreatorRoyalty.tokenCreator(_originContract, _tokenId),
+            owner
+        );
+
+        // Set token as sold
+        iMarketplaceSettings.markERC721Token(_originContract, _tokenId, true);
+
+        emit Sold(_originContract, msg.sender, tokenOwner, sp.amount, _tokenId);
+        }
+        
     }
 
     /////////////////////////////////////////////////////////////////////////
@@ -392,6 +481,7 @@ contract SuperRareMarketAuctionV2 is Ownable, Payments {
         address _originContract,
         uint256 _tokenId
     ) external payable {
+        require(hasRole(TOKEN_COLLECTOR_ROLE, msg.sender), "You are not allowed to collect Art");
         // Check that bid is greater than 0.
         require(_newBidAmount > 0, "bid::Cannot bid 0 Wei.");
 
@@ -418,7 +508,7 @@ contract SuperRareMarketAuctionV2 is Ownable, Payments {
         );
 
         // Check that bidder is not owner.
-        IERC721 erc721 = IERC721(_originContract);
+        IERC721Upgradeable erc721 = IERC721Upgradeable(_originContract);
         address tokenOwner = erc721.ownerOf(_tokenId);
         require(tokenOwner != msg.sender, "bid::Bidder cannot be owner.");
 
@@ -453,7 +543,7 @@ contract SuperRareMarketAuctionV2 is Ownable, Payments {
         acceptBid(_originContract, _tokenId);
     }
 
-    /////////////////////////////////////////////////////////////////////////
+ /////////////////////////////////////////////////////////////////////////
     // acceptBid
     /////////////////////////////////////////////////////////////////////////
     /**
@@ -484,12 +574,15 @@ contract SuperRareMarketAuctionV2 is Ownable, Payments {
         _resetBid(_originContract, _tokenId);
 
         // Transfer token.
-        IERC721 erc721 = IERC721(_originContract);
+        IERC721Upgradeable erc721 = IERC721Upgradeable(_originContract);
         erc721.safeTransferFrom(msg.sender, currentBid.bidder, _tokenId);
 
         // Payout all parties.
         address payable owner = _makePayable(owner());
-        Payments.payout(
+        
+        if(!iMarketplaceSettings.hasERC721TokenSold(_originContract, _tokenId)){
+            
+        Payments.payoutPrimary(
             currentBid.amount,
             !iMarketplaceSettings.hasERC721TokenSold(_originContract, _tokenId),
             iMarketplaceSettings.getMarketplaceFeePercentage(),
@@ -515,7 +608,38 @@ contract SuperRareMarketAuctionV2 is Ownable, Payments {
             currentBid.amount,
             _tokenId
         );
+            
+        }
+       else{
+            Payments.payoutSecondary(
+            currentBid.amount,
+            !iMarketplaceSettings.hasERC721TokenSold(_originContract, _tokenId),
+            iMarketplaceSettings.getMarketplaceFeePercentage(),
+            iERC721CreatorRoyalty.getERC721TokenRoyaltyPercentage(
+                _originContract,
+                _tokenId
+            ),
+            iMarketplaceSettings.getERC721ContractSecondarySaleFeePercentage(
+                _originContract
+            ),
+            msg.sender,
+            owner,
+            iERC721CreatorRoyalty.tokenCreator(_originContract, _tokenId),
+            owner
+        );
+
+        iMarketplaceSettings.markERC721Token(_originContract, _tokenId, true);
+
+        emit AcceptBid(
+            _originContract,
+            currentBid.bidder,
+            msg.sender,
+            currentBid.amount,
+            _tokenId
+        );
+       }
     }
+    
 
     /////////////////////////////////////////////////////////////////////////
     // cancelBid
@@ -574,7 +698,7 @@ contract SuperRareMarketAuctionV2 is Ownable, Payments {
         address _originContract,
         uint256 _tokenId
     ) internal view returns (bool) {
-        IERC721 erc721 = IERC721(_originContract);
+        IERC721Upgradeable erc721 = IERC721Upgradeable(_originContract);
         return
             erc721.ownerOf(_tokenId) ==
             tokenPrices[_originContract][_tokenId].seller;
